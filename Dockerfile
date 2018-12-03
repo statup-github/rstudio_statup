@@ -1,4 +1,6 @@
-FROM stefanfritsch/r_statup:3.5.1
+ENV RVERSION="3.5.1"
+ENV RStudioVERSION="1.2.1153"
+FROM stefanfritsch/r_statup:${RVERSION}
 LABEL maintainer="Stefan Fritsch <stefan.fritsch@stat-up.com>"
 
 EXPOSE 8787
@@ -9,8 +11,8 @@ RUN apt-get update \
           gdebi-core \
           libclang-dev \
           texlive-full \
-    && wget -q https://s3.amazonaws.com/rstudio-ide-build/server/trusty/amd64/rstudio-server-1.2.792-amd64.deb \
-    && dpkg -i rstudio-server-1.2.792-amd64.deb \
+    && wget -q https://s3.amazonaws.com/rstudio-ide-build/server/trusty/amd64/rstudio-server-${RStudioVERSION}-amd64.deb \
+    && dpkg -i rstudio-server-${RStudioVERSION}-amd64.deb \
     && rm rstudio-server-*-amd64.deb \   
     ## Symlink pandoc & standard pandoc templates for use system-wide
     && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
@@ -28,10 +30,10 @@ RUN apt-get update \
       \n# where this Docker container is running. \
       \nif(is.na(Sys.getenv("HTTR_LOCALHOST", unset=NA))) { \
       \n  options(httr_oob_default = TRUE) \
-      \n}' >> /opt/microsoft/ropen/3.5.0/lib64/R/etc/Rprofile.site \
-    && echo "PATH=${PATH}" >> /opt/microsoft/ropen/3.5.0/lib64/R/etc/Renviron \
+      \n}' >> /opt/microsoft/ropen/${RVERSION}/lib64/R/etc/Rprofile.site \
+    && echo "PATH=${PATH}" >> /opt/microsoft/ropen/${RVERSION}/lib64/R/etc/Renviron \
     ## Prevent rstudio from deciding to use /usr/bin/R if a user apt-get installs a package
-    &&  echo 'rsession-which-r=/opt/microsoft/ropen/3.5.0/lib64/R/bin/R' >> /etc/rstudio/rserver.conf \
+    &&  echo 'rsession-which-r=/opt/microsoft/ropen/${RVERSION}/lib64/R/bin/R' >> /etc/rstudio/rserver.conf \
     ## use more robust file locking to avoid errors when using shared volumes:
     && echo 'lock-type=advisory' >> /etc/rstudio/file-locks \
     ## configure git not to request password each time
