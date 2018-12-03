@@ -10,7 +10,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
           gdebi-core \
           libclang-dev \
-          texlive-full \
     && wget -q https://s3.amazonaws.com/rstudio-ide-build/server/trusty/amd64/rstudio-server-${RStudioVERSION}-amd64.deb \
     && dpkg -i rstudio-server-${RStudioVERSION}-amd64.deb \
     && rm rstudio-server-*-amd64.deb \   
