@@ -1,7 +1,8 @@
-ENV RVERSION="3.5.1"
-ENV RStudioVERSION="1.2.1153"
-FROM stefanfritsch/r_statup:${RVERSION}
+FROM stefanfritsch/r_statup:3.5.1
 LABEL maintainer="Stefan Fritsch <stefan.fritsch@stat-up.com>"
+
+ENV RVERSION="3.5.1"
+ENV RStudioVERSION="1.2.1237"
 
 EXPOSE 8787
 EXPOSE 3838
