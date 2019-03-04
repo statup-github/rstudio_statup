@@ -33,7 +33,7 @@ RUN apt-get update \
       \n}' >> /opt/microsoft/ropen/${RVERSION}/lib64/R/etc/Rprofile.site \
     && echo "PATH=${PATH}" >> /opt/microsoft/ropen/${RVERSION}/lib64/R/etc/Renviron \
     ## Prevent rstudio from deciding to use /usr/bin/R if a user apt-get installs a package
-    &&  echo 'rsession-which-r=/opt/microsoft/ropen/${RVERSION}/lib64/R/bin/R' >> /etc/rstudio/rserver.conf \
+    &&  echo "rsession-which-r=/opt/microsoft/ropen/${RVERSION}/lib64/R/bin/R" >> /etc/rstudio/rserver.conf \
     ## use more robust file locking to avoid errors when using shared volumes:
     && echo 'lock-type=advisory' >> /etc/rstudio/file-locks \
     ## configure git not to request password each time
