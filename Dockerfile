@@ -1,7 +1,7 @@
-FROM stefanfritsch/r_statup:3.5.1
+FROM stefanfritsch/r_statup:3.5.3
 LABEL maintainer="Stefan Fritsch <stefan.fritsch@stat-up.com>"
 
-ENV RVERSION="3.5.1"
+ENV RVERSION="3.5.3"
 ENV RStudioVERSION="1.2.1335"
 
 EXPOSE 8787
