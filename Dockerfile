@@ -1,4 +1,4 @@
-FROM stefanfritsch/r_statup:3.5.1.20190822
+FROM stefanfritsch/r_statup:3.5.1.20190826
 LABEL maintainer="Stefan Fritsch <stefan.fritsch@stat-up.com>"
 
 ENV RVERSION="3.5.1"
